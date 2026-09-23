@@ -1,7 +1,7 @@
 ---
 title: "Worksheet 2: Data Structures"
-author: ""
-date: ""
+author: "Ava Cole"
+date: "Sep 21"
 format:
   html:
     df-print: paged
@@ -83,7 +83,13 @@ x[c(3,3)]
 ```
 (@) Create your own vector and return three values using the subsetting method above. 
 ```{r}
-
+cat <- c(5, 10, 15, 1, 2, 3, 4)
+```
+```{r}
+cat[c(2,6)]
+```
+```{r}
+cat[order(cat)]
 ```
 
 
@@ -94,7 +100,7 @@ x[-c(3, 1)]
 
 (@) What happened here? Describe this in your own words. 
 
->
+> With the negative sign in front of the c, it looks like it excludes specific elements from a vector in R.
 
 You can use either positive or negative integers to subset a vector but you **cannot mix the two**.
 
@@ -111,7 +117,9 @@ x[x > 7]
 
 (@) What is going on in each of the lines above? Describe it in your own words. 
 
->
+> For line 110, it looks like the true elements are kept while the false ones are discarded
+it kept the 1st, 2rd, and 4th elements
+Then 115 tests what element is greater than 7, and keeps the elements that meet the condition.
 
 Nothing returns the original vector. This isn't that useful here but can come in handy when you have more complex structures like matrices and arrays. 
 ```{r}
@@ -124,6 +132,8 @@ If your vector is named, you can also use character vectors to return elements w
 y[c("d")]
 ```
 (@) What happened here? Explain this in your own words. 
+
+We are shown are to set names using letters instead of using numbers.
 
 #### Matrices
 
@@ -142,12 +152,12 @@ In the `matrix()` function:
 
 (@) You try now, create a matrix that had five rows with numbers that range from 25 to 49. 
 ```{r}
-
+matrix(25:49, nrow = 5, byrow = TRUE)
 ```
 
 (@) Can you create a matrix that has 3 rows with only even numbers from 2 to 18? 
 ```{r}
-
+matrix((1:9) * 2, nrow = 3, byrow = TRUE)
 ```
 
 ##### Subsetting Matricies 
@@ -199,22 +209,22 @@ gayguides[1:3,]
 
 (@) Why is this different? What do we get compared to the previous example? 
 
->
+> Because there is a comma, so we get the first three rows and every single column
 
 (@) Can you find just the city and state for the first 5 entries? 
 ```{r}
-
+gayguides[1:5, c("city", "state")]
 ```
 
 (@) How about the street address and type for rows 2,555 to 2,560?
 
 ```{r}
-
+gayguides[2555:2560, c("streetaddress", "type")]
 ```
 
 (@) Load another dataset from `DigitalMethodsData`. Subset it to find some element of the data. Write the code below and then explain what element of the data you wanted to subset and why:
 ```{r}
-
+almshouse.occupationalcodes[200:213, c("code", "occupation")]
 ```
 
 > 
@@ -223,8 +233,8 @@ Another useful operator to know is `$` which we used a little bit in the previou
  
 So for example both of these produce the same result. One is just easier to type. Because the output here is so large, I've commented these two lines out. Uncomment them and the run the block.
 ```{r R.options=list(max.print=10)}
-#gayguides["title"]
-#gayguides$title
+gayguides["title"]
+gayguides$title
 ```
 
 Notice the above output is _huge_. We can combine `$` and `[` to drill down more specifically like we did earlier.
@@ -234,11 +244,12 @@ gayguides$city[100:110]
 
 (@) What does this code do? 
 
->
+>This code targets the city from 100 to 110. Lists the cities in those numbers
 
 (@) Can you find all the titles of locations in South Carolina? (Hint: You'll need to use both `$` and `[]`)
 ```{r}
-
+gayguides["title"]
+gayguides$title[gayguides$state == "SC"]
 ```
 
 We can also use `$` to create a new column in `gayguides`. 
@@ -273,6 +284,8 @@ Stick with `%>%` in your worksheets so your code matches the examples. But when 
 
 (@) Use the pipe to subset the gayguides data to get the title column, then look at the first 20 entries.
 ```{r}
+gayguides["title"]
+
 ```
 
 ## Putting It All Together: Historical Data Challenges
