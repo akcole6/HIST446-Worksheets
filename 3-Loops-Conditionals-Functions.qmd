@@ -1,6 +1,6 @@
 ---
 title: "Worksheet 3: Loops, Conditionals and Functions"
-author: ""
+author: "Ava Cole"
 date: ""
 format:
   html:
