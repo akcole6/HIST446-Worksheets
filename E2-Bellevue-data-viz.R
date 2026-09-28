@@ -10,10 +10,14 @@
 #   ggplot(data, aes(x = ..., y = ...)) + geom_...() + labs(...)
 # =============================================================================
 
-library(tidyverse) # includes ggplot2 and lubridate (for dates)
+Library(tidyverse)
+
+# includes ggplot2 and lubridate (for dates)
 #cntrlenter
+
 bellevue <- read_csv("data/bellevue_for_R.csv", show_col_types = FALSE)
 glimpse(bellevue)
+
 # The first column (...1) is just row numbers saved by R. You can ignore it.
 
 
@@ -22,9 +26,9 @@ glimpse(bellevue)
 # Count admissions whose reason was "recent emigrant", month by month.
 # floor_date() turns every date into the first day of its month.
 emigrants_by_month <- bellevue %>%
-  filter(reason_cleaned == "recent emigrant") %>%
-  mutate(month = floor_date(date_in, "month")) %>%
-  count(month)
+ filter(reason_cleaned == "recent emigrant") %>%
+ mutate(month = floor_date(date_in, "month")) %>%
+ count(month)
 #we create a variable (emigrants by month. Filter gets all of the rows that mach "reasoncleaned
 #equals recent immigrant. That output goes into mutate, which creates a new column called month
 #and that column is made up of floor_date, which says "This is the minimum date and month
@@ -59,6 +63,9 @@ all_by_month <- bellevue %>%
   count(month, reason)
 
 # Mapping a column to color draws one line per group, with a legend.
+
+Ye
+
 ggplot(all_by_month, aes(x = month, y = n, color = reason)) +
   geom_line() +
   geom_point() +
