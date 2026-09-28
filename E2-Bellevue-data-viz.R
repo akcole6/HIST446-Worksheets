@@ -10,8 +10,8 @@
 #   ggplot(data, aes(x = ..., y = ...)) + geom_...() + labs(...)
 # =============================================================================
 
-library(tidyverse)   # includes ggplot2 and lubridate (for dates)
-
+library(tidyverse) # includes ggplot2 and lubridate (for dates)
+#cntrlenter
 bellevue <- read_csv("data/bellevue_for_R.csv", show_col_types = FALSE)
 glimpse(bellevue)
 # The first column (...1) is just row numbers saved by R. You can ignore it.
@@ -25,6 +25,10 @@ emigrants_by_month <- bellevue %>%
   filter(reason_cleaned == "recent emigrant") %>%
   mutate(month = floor_date(date_in, "month")) %>%
   count(month)
+#we create a variable (emigrants by month. Filter gets all of the rows that mach "reasoncleaned
+#equals recent immigrant. That output goes into mutate, which creates a new column called month
+#and that column is made up of floor_date, which says "This is the minimum date and month
+#and then we get the minimum count by month
 
 emigrants_by_month
 
@@ -32,7 +36,9 @@ emigrants_by_month
 ggplot(emigrants_by_month, aes(x = month, y = n)) +
   geom_col()
 
+#ggplot means get this variable and assign this column month to x axis and "n" to y axis
 # Same data, as a line with points, plus labels. Each "+" adds a layer.
+#And then your giving this a geomentry with geom_col
 ggplot(emigrants_by_month, aes(x = month, y = n)) +
   geom_line() +
   geom_point() +
