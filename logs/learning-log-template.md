@@ -1,9 +1,9 @@
 # Weekly Learning Log
 
-* **Student Name:**
-* **Week Number:**
+* **Student Name:* Ava Cole*
+* **Week Number:* 3 *
 * **Today's Date**
-* **Topic(s):**
+* **Topic(s):* Loops, Conditionals, and Functions *
 
 -------------------
 
@@ -21,7 +21,7 @@ _Empty brackets (``[ ]``) work as checkboxes. You should type an X inside empty 
 
 If you marked Coding Worksheet, what is the worksheet number? 
 
->
+> 3
 
 If you marked Other, describe the work you've done this week.
 

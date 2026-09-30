@@ -1,7 +1,7 @@
 ---
 title: "Worksheet 3: Loops, Conditionals and Functions"
 author: "Ava Cole"
-date: ""
+date: "2026"
 format:
   html:
     df-print: paged
