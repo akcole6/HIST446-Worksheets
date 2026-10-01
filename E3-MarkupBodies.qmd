@@ -60,7 +60,7 @@ Check that R can find the files:
 ```{r}
 #| message: false
 library(tidyverse)
-dir.create("output/exercise3"
+dir.create("output/exercise3")
 list.files("data/FOTM")
 ```
 
@@ -165,7 +165,8 @@ with_ads <- function(some_runaways) {
 ```{r}
 ran_before <- runaways %>% filter(ran_before == "true")
 
-
+ran_before_with_ads <- ran_before %>% with_ads()
+ran_before_with_ads <- with_ads(ran_before)
 ```
 
 ------------------------------------------------------------------------
