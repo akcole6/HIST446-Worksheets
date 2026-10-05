@@ -1,8 +1,8 @@
 ---
 title: "In-Class Exercise: Building a Database of Muncie Directories"
 subtitle: "From a printed source, to a table, to related tables"
-author: ""
-date: ""
+author: "Ava Cole"
+date: "Sep 23"
 format:
   html:
     df-print: paged
@@ -60,11 +60,14 @@ Now look at the **scan** of the same page available online by clicking on this U
 
 (@) Compare the scan with the text above. Name **three** things a reader of the scan knows that the OCR text gets wrong or loses.
 
->
+> mispellings
+It looses the formatting
+misses the big words on the side
+#Double check aboveidk
 
 (@) Find the page in this city directory volume that explains the directory's abbreviations (the table of contents on Page 7 tells you where). What does an asterisk before a name mean?
 
->
+> I'm not sure, 
 
 ### Where did the sample table you loaded with `read_csv()` come from?
 
@@ -123,8 +126,9 @@ by_hand <- tribble(
   3,      "Davis",  "Carl S.", "Naomi O.", FALSE,     "secretary, treasurer and cashier", "Muncie Water Works Co.", "200 Queen", "res",    "Work address (316 S. Mulberry) has no column. OCR reads Naomi's initial as a zero."
 )
 
-by_hand
-```
+by_hand %>% add_row(entry)
+
+df <- tibble (x = 1:3, 
 
 A few rules I followed, all from our readings on spreadsheets and databases:
 
