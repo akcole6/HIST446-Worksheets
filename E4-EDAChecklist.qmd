@@ -422,11 +422,14 @@ census_1860 %>%
 
 (@) Answer Peng's three questions for our question ("In which states were the advertisements in FOTM published?"). Then return to the broad question we set aside in step 1, "Where did people escape from slavery?" What would you need to answer it, and what can FOTM honestly tell you about it?
 
->
+> Do we have the right data? Not really, it seems. The date is messed up from the way it was digitized, as example of all the untranscribed ads. The data is just what the people scanned, not reflecting true historical accuracy.
+We do need other data, specifically more census data showing the enslaved population in that decade, and we would need to filter out duplicates.
+No. not the right question, because the fotm records newspaper advertisements, not escapes.
 
 (@) Rewrite the question you wrote in step 1, using what you learned in this checklist.
 
->
+> Among the advertisements, which decade has the highest number of transcribed runaway ads per year?
+How could this compare to the total slave population in that decade?
 
 ------------------------------------------------------------------------
 

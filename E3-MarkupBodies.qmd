@@ -5,10 +5,8 @@ author: "Ava Cole"
 date: "September 30th"
 format:
   html:
-    theme: cosmo
     highlight-style: dracula
     code-overflow: wrap
-    css: assets/styles.css
     df-print: paged
     toc: true
     toc-depth: 2
