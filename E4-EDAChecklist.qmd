@@ -1,8 +1,8 @@
 ---
 title: "In-Class Exercise 4: An Exploratory Data Analysis Checklist"
 subtitle: "Roger Peng's checklist, applied to Freedom on the Move"
-author: ""
-date: ""
+author: "Ava Cole"
+date: "Oct 7"
 format:
   html:
     theme: cosmo
@@ -51,13 +51,14 @@ read_fotm <- function(table) {
     rename_with(~ .x %>% str_remove("^\\S+ ") %>% str_to_lower())   # "ADVERTISEMENT ID" becomes "id"
 }
 ```
-
+#we're getting tidyverse and creating a folder called ecerxcise 4 inside of our output folder. We also create the same helper function from the week before.
 ------------------------------------------------------------------------
 
 ## 1. Formulate your question
 
 > **Peng:** "A sharp question or hypothesis can serve as a dimension reduction tool that can eliminate variables that are not immediately relevant to the question." It's also worth asking early whether you have the right data to answer it. ([Peng, "Formulate your question"](https://bookdown.org/rdpeng/exdata/exploratory-data-analysis-checklist.html#formulate-your-question))
 
+His sharp question:
 Peng starts from a broad question ("Are air pollution levels higher on the east coast than on the west coast?") and sharpens it until it names one measure and one unit. We'll do the same. A broad question:
 
 > Where did people escape from slavery?
@@ -66,8 +67,10 @@ FOTM can't answer that directly: it holds *advertisements*, not escapes.
 
 
 (@) Write your own sharp question about FOTM's advertisements: one that names exactly what you'd count or measure, and for what unit (an ad, a newspaper, a state, a decade...).
-
->
+#where exactly did people escaping slavery flee to? What was the most popular place?
+#Which decade saw the most escapes?
+#Is there a newspaper that led to a rise in slave catchers In the South?
+> 
 
 Save your question for a possible future investigation. For the purpose of learning Peng's checklist, we'll pursue a question this database can actually answer:
 
@@ -96,13 +99,13 @@ nrow(ads)
 ```{r}
 ads_place <- ads %>%
   left_join(newspapers %>% select(newspaper_id = id, newspaper = name, location_id),
-            by = "newspaper_id") %>%
+            by = "newspaper_id") %>% #The key in which we are merging them through
   left_join(locations %>% select(location_id = id, city, state),
             by = "location_id")
 
 nrow(ads_place)   # should be the same as nrow(ads)
 ```
-
+#
 ------------------------------------------------------------------------
 
 ## 3. Check the packaging
@@ -116,25 +119,35 @@ ncol(ads)
 nrow(newspapers)
 n_distinct(newspapers$name)   # how many different newspaper titles?
 ```
+#There are mutiple ads in each newspapers.
+#
+#Maybe question..Which ads resulted in a higher amount of slave catchers?
 
 Titles aren't the whole story: two papers can share a name, and one paper can move. So count the different newspapers by title **and** place of publication:
 
 ```{r}
-ads_place %>%
-  distinct(newspaper, city, state) %>%
-  nrow()                               
+TEST <- ads_place %>%
+  distinct(newspaper, city, state)   
 ```
 
 (@) What did the `distinct()` function do in the chunk above?
 Hint: take a peak at the documentation for the function with `?distinct`.
 
->
+> Keeps distinct/unique roles
+Its going to get whatever is your argument, and your argumental should be a dataframe and a variable and it'll tell you all the unique frames for your data set
 
 (@) The `newspaper` table has 41,551 rows, but notice many different newspapers (unique pair of title + place) there are. So what is the **unit of analysis** in the `newspaper` table? In other words, what is one row? 
 
->
+> ID, name, Location ID?
 
 (@) Then find a title that appears in two places: did the paper move, are these two different papers, or is it an error? 
+
+Milledgeville Reflector
+Milledgeville Federal Union
+Are they used for different things?
+Ex: its saying for the daily national intelligence, that its for both DC and NY, 
+which is an error
+There should be seperate locations. There should be mutiple rows
 
 ::: {.callout-tip}
 ## Tip:
@@ -143,14 +156,12 @@ To answer the question, you need two things for each title: **where** it was pub
 1. **One row per title and place, with the evidence.** Start from `ads_place`, group by title and place, and summarize how many ads each one has and when they were published:
 
 ```r
-   ads_place %>%
-     group_by(______) %>%
-     summarize(ads   = n(),
-               first = min(________),
-               last  = max(________),
-               .groups = "drop")
-```
+
+
 2. **Count places per title.** Pipe that into `add_count(_______)` so that each row shows how many places its title appears in.
+
+
+
 
 3. **Keep only titles with more than one place:** `filter(___ > ___)`.
 
@@ -163,7 +174,10 @@ To answer the question, you need two things for each title: **where** it was pub
 
 
 ```{r}
-
+ads_place %>%
+  group_by (newspaper, state, city) %>%
+  summarize(r = )
+  
 ```
 Write your findings here:
 
