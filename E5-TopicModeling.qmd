@@ -1,8 +1,8 @@
 ---
 title: "In-Class Exercise 5, Part 2: Topic Modeling *The American City*"
 subtitle: "A first topic model in R"
-author: ""
-date: ""
+author: " Ava Cole"
+date: "10/21"
 format:
   html:
     theme: cosmo
@@ -83,7 +83,7 @@ nrow(tokens)
 
 **Q1. Discuss with your pair or group:** How many words does R count in the corpus? Compare that with the total Voyant gave you in Part 1 of `E5-TextAnalysis.qmd`. If the numbers differ, why might two programs count the "same" words differently?
 
->
+>The corpus counted 1,463,997 total words, which was a little less than in this one. They differ because voyant has different rules.
 
 ------------------------------------------------------------------------
 
@@ -108,7 +108,7 @@ chunk_info
 
 **Q2. Discuss with your pair or group:** How many documents do we have now? What do we gain from chunking, and what might we lose?
 
->
+> This is the amount of documents we have now after running chunk 5. A con in this is that the order of the words stop mattering and that we're cutting across articles, so where not getting the end or the starts of the article. So much context and nuance is lost. A pro could be better organization. the goal of topic modeling is to find whats talked about the most, so with smaller, concentrated words, its easier to find and deduce the purpose. The smaller the documents the better.
 
 ------------------------------------------------------------------------
 
@@ -123,7 +123,7 @@ Like we did on Monday with Voyant's stopword list, we need to make decisions abo
 
 ```{r}
 # Chunk 6
-my_stopwords <- c("ing", "tion", "con", "ment")   # word fragments from line breaks; add your own
+my_stopwords <- c("ing", "tion", "con", "ment", "american", "new", "city", "york" )   # word fragments from line breaks; add your own
 
 words <- tokens %>%
   anti_join(stop_words, by = "word") %>%
@@ -136,7 +136,7 @@ words %>% count(word, sort = TRUE)
 
 **Q3. Discuss with your pair or group:** Look at the 50 most frequent words above. Which junk tokens from Voyant (Part 3 of `E5-TextAnalysis.qmd`) and which others you see now would you add to `my_stopwords`? Is there a reason you can think of to remove any real words from this corpus? Which ones and why?
 
->
+> We would choose to remove american, city, and new and york because they are related to the title. irrevelant.
 
 ------------------------------------------------------------------------
 
@@ -159,7 +159,7 @@ dtm
 
 **Q4. Discuss with your pair or group:** How many documents and how many different words (terms) are in the matrix? The output says most cells are empty (that's what **sparsity** means). Why would most words be missing from most 1,000-word chunks?
 
->
+> It appears 95% of the matrix is empty (sparsity). 95% precent of the term frequency per document is empty. SO some use a lot of words, but other words do not show up across the collections. So some chunks have more words than other.
 
 ------------------------------------------------------------------------
 
@@ -176,6 +176,9 @@ This chunk takes **one to two minutes**. That's normal: the algorithm is going t
 # Chunk 8
 lda <- LDA(dtm, k = 10, control = list(seed = 446))
 ```
+This is the chunk that actually runs the model^
+lDA takes sentences, shakes them up, then cateorzies them based off how often they show up again
+
 
 (Topic models have one more setting, **alpha**, which controls how many topics each document tends to mix. `LDA()` estimates it for you, so we'll leave it alone.)
 
