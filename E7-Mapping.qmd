@@ -2,7 +2,7 @@
 title: "Exercise 7: Mapping Muncie, 1925"
 subtitle: "Base layers, small multiples, and interactive maps in R"
 author: ""
-date: ""
+date: " Nov 4 "
 format:
   html:
     theme: cosmo
@@ -162,7 +162,9 @@ residents
 
 Right now `residents` is an ordinary table with two number columns, `lat` and `long`.
 
-`st_as_sf()` turns it into a **spatial** table: the two columns become a `geometry` column that R knows how to draw. The `crs` argument names the **coordinate reference system**, the rules for turning latitude and longitude into positions on a flat map. Code 4269 is the one the Census Bureau uses (NAD83), both in its geocoder and in its map layers, so everything lines up.
+`st_as_sf(?stsfs)` turns it into a **spatial** table: the two columns become a `geometry` column that R knows how to draw. The `crs` argument names the **coordinate reference system**, the rules for turning latitude and longitude into positions on a flat map. Code 4269 is the one the Census Bureau uses (NAD83), both in its geocoder and in its map layers, so everything lines up.
+
+sf stands for simple feature. So what we're doing is simplyfing a feature
 
 ```{r}
 # Chunk 4
@@ -171,6 +173,13 @@ residents_sf <- residents %>%
 
 residents_sf %>% select(surname, street)   # the geometry column always comes along
 ```
+Points (residents_sf, one row per person, a single location
+Lines (Roads, rails, water, one row per stretch, a path of location
+POlygons (City one row: Muncie. A closed shape)))
+Every layer is a table with a geometry column.
+Base layers are also sources (like an actual map, we can turn it into the base of the actual map)
+TIGER/Line: the Census Bureau's map of streetss, rivers, railroads, and boundaries, the same map behind the geocoder
+
 
 Now the **base layers**. The `tigris` package downloads the Census Bureau's **TIGER/Line** files: the map behind the geocoder you used in Exercise 6. We'll take four layers for Delaware County and cut them down to a rectangle around Muncie with `st_crop()`:
 
