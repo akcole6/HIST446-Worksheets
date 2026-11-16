@@ -173,13 +173,8 @@ residents_sf <- residents %>%
 
 residents_sf %>% select(surname, street)   # the geometry column always comes along
 ```
-Points (residents_sf, one row per person, a single location
-Lines (Roads, rails, water, one row per stretch, a path of location
-POlygons (City one row: Muncie. A closed shape)))
-Every layer is a table with a geometry column.
-Base layers are also sources (like an actual map, we can turn it into the base of the actual map)
-TIGER/Line: the Census Bureau's map of streetss, rivers, railroads, and boundaries, the same map behind the geocoder
 
+Points (residents_sf, one row per person, a single location Lines (Roads, rails, water, one row per stretch, a path of location POlygons (City one row: Muncie. A closed shape))) Every layer is a table with a geometry column. Base layers are also sources (like an actual map, we can turn it into the base of the actual map) TIGER/Line: the Census Bureau's map of streetss, rivers, railroads, and boundaries, the same map behind the geocoder
 
 Now the **base layers**. The `tigris` package downloads the Census Bureau's **TIGER/Line** files: the map behind the geocoder you used in Exercise 6. We'll take four layers for Delaware County and cut them down to a rectangle around Muncie with `st_crop()`:
 
@@ -441,29 +436,43 @@ unlink("output/exercise7/muncie_1925_map_files", recursive = TRUE)   # tidy up a
 
 ## Part 6: Your project
 
+
+
 Over the last five exercises you've seen five kinds of visualizations: charts from tables (E2, E4), word frequencies and distinctive words (E5), topics over time (E5), place names counted from text (E6), and points on a map (E6, E7). The **Method Selection & Revised Question** assignment is due Monday, November 16, and your first **Data Visualization & Preliminary Analysis** is due a week later. Use this part to start planning one visualization for your own project.
 
 **Q2.** Answer each part in one or two sentences:
 
 1.  **Source and row.** What is your main source, and what will one row of your data be (a person, a document, a page, a place, an event)?
 
-> 
+> My main source is the bound proceedings/minutes of the Cook County board of commisioners from 1885-87 
+>I am specifically relying on official reports (like from the Warden/Superintendent/County Agent, as well as the infirmary monthly reports (on pgs 64, 132, 133), these including addresses and statistical tables. As well as the Chairman Aldrichs length address noted on 392-398
+>Fundamnetally my source is the bureaucratic record of the cook county inst. Since I was never able to access classified patient case files
+>One row of my data will be like a specific page
+> Maybe something like
+  page number / Year / Author (of whats written)/ Document_Type / OCR / Key-Entities / any noted financial/bureacratic keywords / and then Patient stats
 
 2.  **Method.** Which method from E2–E7 fits your question best, and why? (If none fits, say what's missing.)
 
-> 
+>I'm gonna need both NER and TF-IDF. 
+>NER is perfect because to pinpoint the dehumanization I'm required to extract specific institutions and persons to map the network of institutional power
+>TF-IDF with help me with word frequency, seeing if/how buercratic language may dominate over words of care/treatment
+
 
 3.  **The visualization.** Describe one chart or map you could make: what goes on the x and y axes (or where on the map), and what color, size, or panels show.
 
-> 
+> X: The different document types or sections
+> Y: The frequency of specific categories or words
+>I can use color mapping. Financial?Bureaucratic language will be red, Medical care language will be blue
+>maybe a network graph
 
 4.  **What it hides.** What will this visualization leave out?
 
-> 
+> Still leaves out actual real human beings, unfortunatly flattening these experiences into datat points, which is another reason why I'm shifting my question.
+>Also hides context
 
 5.  **What's left to do.** What has to happen to your data before you can visualize it (transcribing, cleaning, coding categories, geocoding)? Can you do it by November 23? If not, what smaller version could you make?
 
-> 
+> I need to clean OCR text, structure it into rows and code the categories. I need to manually tag which pages contain what language/which pages are dominated with what language. i can do this before the 23rd but the whole document. Which is fine because that wasn't the end goal anyways. I just need to focus on my key pages.
 
 ------------------------------------------------------------------------
 
